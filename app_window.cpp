@@ -16,6 +16,6 @@ namespace app {
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-    window = glfwCreateWindow(WIDTH, HEIGHT, windowName.c_str(), nullptr, nullptr);
+    window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
   }
 }

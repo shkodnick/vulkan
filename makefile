@@ -1,13 +1,15 @@
-CFLAGS = -std=c++17 -O2
-LDFLAGS = -lglfw -lvulkan -ldl -lpthread -lX11 -lXxf86vm -lXrandr -lXi
+	include .env
 
-VulkanTest: main.cpp
-	g++ $(CFLAGS) -o VulkanTest main.cpp $(LDFLAGS)
+	CFLAGS = -std=c++17 -I. -I$(VULKAN_SDK_PATH)/include
+	LDFLAGS = -L$(VULKAN_SDK_PATH)/lib `pkg-config --static --libs glfw3` -lvulkan -ldl -lpthread -lX11 -lXxf86vm -lXrandr -lXi
 
-.PHONY: test clean
+	a.out: *.cpp *.hpp
+		g++ $(CFLAGS) -o a.out *.cpp $(LDFLAGS)
 
-test: VulkanTest
-	./VulkanTest
+	.PHONY: test clean
 
-clean:
-	rm -f VulkanTest
+	test: a.out
+		./a.out
+
+	clean:
+		rm -f a.out

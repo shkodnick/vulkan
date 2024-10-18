@@ -8,7 +8,12 @@ namespace app {
   class AppWindow {
   public:
     AppWindow(uint32_t w, uint32_t h, std::string name);
-    ~AppWindow;
+    ~AppWindow();
+
+    AppWindow(const AppWindow &) = delete;
+    AppWindow &operator=(const AppWindow &) = delete;
+
+    bool shouldClose() {return glfwWindowShouldClose(window);}
   private:
     void initWindow();
 
